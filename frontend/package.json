@@ -1,0 +1,17 @@
+{
+  "name": "hofmann-elimination-example-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build"
+  },
+  "dependencies": {
+    "hofmann-typescript": "file:../../hofmann-typescript"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vite": "^7.3.1"
+  }
+}
