@@ -1,4 +1,4 @@
-import { OpaqueHttpClient } from 'hofmann-typescript';
+import { OpaqueHttpClient } from '@codeheadsystems/hofmann-typescript';
 
 type OnLoginSuccess = (token: string, username: string) => void;
 

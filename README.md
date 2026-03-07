@@ -6,7 +6,7 @@ A standalone Dropwizard application demonstrating [hofmann-elimination](https://
 
 - User registration and login via OPAQUE (RFC 9807 — server never sees the password)
 - JWT-protected notes REST API
-- Single-page web UI using the `hofmann-typescript` browser client
+- Single-page web UI using the `@codeheadsystems/hofmann-typescript` browser client
 - Dagger 2 dependency injection
 - SQL persistence (H2 + JDBI3) for credentials and notes
 
@@ -104,19 +104,11 @@ All JAX-RS resources are mounted at `/api` (`server.rootPath: /api/*`).
 | POST | /api/opaque/auth/start | — | Login step 1 |
 | POST | /api/opaque/auth/finish | — | Login step 2 — returns JWT |
 | DELETE | /api/opaque/registration | Bearer | Delete account |
+| GET | /api/oprf/config | — | OPRF server config |
+| POST | /api/oprf | Bearer | Standalone OPRF evaluation |
 | GET | /api/notes | Bearer | List your notes |
 | POST | /api/notes | Bearer | Create a note |
 | DELETE | /api/notes/{id} | Bearer | Delete a note |
-
-## Moving this app
-
-When moving out of the `hofmann-elimination` parent directory, update `frontend/package.json` to point to the published npm package instead of the local file reference:
-
-```json
-"hofmann-typescript": "0.1.0"
-```
-
-(Once `hofmann-typescript` is published to npm.)
 
 ## Configuration Reference
 

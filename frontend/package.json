@@ -8,7 +8,7 @@
     "build": "tsc --noEmit && vite build"
   },
   "dependencies": {
-    "hofmann-typescript": "file:../../hofmann-typescript"
+    "@codeheadsystems/hofmann-typescript": "latest"
   },
   "devDependencies": {
     "typescript": "^5.4.0",
