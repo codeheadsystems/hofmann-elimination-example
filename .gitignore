@@ -13,4 +13,4 @@ build
 # Node / Vite
 frontend/node_modules/
 frontend/dist/
-data/
+data/hof*

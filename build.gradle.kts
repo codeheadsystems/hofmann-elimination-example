@@ -79,6 +79,11 @@ tasks.named("processResources") {
     dependsOn(copyFrontend)
 }
 
+// Remove H2 database files on clean (keeps the .emptydir placeholder)
+tasks.named<Delete>("clean") {
+    delete(fileTree("data") { include("*.db") })
+}
+
 // Merge META-INF/services/* so Dropwizard's connector/provider registrations survive fat-jar packaging
 tasks.withType<ShadowJar>().configureEach {
     mergeServiceFiles()
