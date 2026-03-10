@@ -4,6 +4,7 @@ import com.codeheadsystems.hofmann.dropwizard.HofmannBundle;
 import com.codeheadsystems.hofmann.example.dagger.AppComponent;
 import com.codeheadsystems.hofmann.example.dagger.AppModule;
 import com.codeheadsystems.hofmann.example.dagger.DaggerAppComponent;
+import com.codeheadsystems.hofmann.example.recovery.DemoRecoveryChallenger;
 import com.codeheadsystems.hofmann.example.store.MutableCredentialStoreHolder;
 import com.codeheadsystems.hofmann.example.store.SqlCredentialStore;
 import com.codeheadsystems.hofmann.server.store.InMemorySessionStore;
@@ -37,7 +38,8 @@ public class ExampleApplication extends Application<ExampleConfiguration> {
     bootstrap.addBundle(new AssetsBundle("/frontend/", "/", "index.html", "frontend"));
     // Use the credential holder so the bundle wires up before the database is available,
     // but all actual credential access happens during request processing (after run()).
-    bootstrap.addBundle(new HofmannBundle<>(credentialStoreHolder, new InMemorySessionStore(), null));
+    bootstrap.addBundle(new HofmannBundle<>(credentialStoreHolder, new InMemorySessionStore(), null)
+        .withRecovery(new DemoRecoveryChallenger()));
   }
 
   @Override

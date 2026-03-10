@@ -1,3 +1,5 @@
+import { OpaqueHttpClient } from '@codeheadsystems/hofmann-typescript';
+
 interface NoteResponse {
   id:        string;
   title:     string;
@@ -6,6 +8,8 @@ interface NoteResponse {
 }
 
 export function initNotesView(token: string, username: string, onLogout: () => void): void {
+  let currentToken = token;
+
   const loggedInUser = document.getElementById('logged-in-user')!;
   const logoutBtn    = document.getElementById('logout-btn')!    as HTMLButtonElement;
   const createForm   = document.getElementById('create-form')!   as HTMLFormElement;
@@ -18,6 +22,39 @@ export function initNotesView(token: string, username: string, onLogout: () => v
   logoutBtn.addEventListener('click', () => {
     notesList.innerHTML = '';
     onLogout();
+  });
+
+  // ── Change Password ────────────────────────────────────────────────────────
+
+  const changePasswordForm = document.getElementById('change-password-form')! as HTMLFormElement;
+  const changePasswordMsg  = document.getElementById('change-password-message')!;
+
+  changePasswordForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    changePasswordMsg.classList.add('hidden');
+
+    const newPasswordInput = document.getElementById('new-password') as HTMLInputElement;
+    const newPassword = newPasswordInput.value;
+    const submitBtn = changePasswordForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Changing...';
+
+    try {
+      const client = await OpaqueHttpClient.create('/api');
+      await client.changePassword(username, newPassword, currentToken);
+      // Re-authenticate with the new password to get a fresh token
+      const newToken = await client.authenticate(username, newPassword);
+      currentToken = newToken;
+      newPasswordInput.value = '';
+      changePasswordMsg.textContent = 'Password changed successfully!';
+      changePasswordMsg.className = 'message success';
+    } catch (err) {
+      changePasswordMsg.textContent = err instanceof Error ? err.message : String(err);
+      changePasswordMsg.className = 'message error';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Change Password';
+    }
   });
 
   createForm.addEventListener('submit', async (e) => {
@@ -50,7 +87,7 @@ export function initNotesView(token: string, username: string, onLogout: () => v
 
   async function apiGet<T>(path: string): Promise<T> {
     const r = await fetch(path, {
-      headers: { 'Authorization': `Bearer ${token}` },
+      headers: { 'Authorization': `Bearer ${currentToken}` },
     });
     if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
     return r.json() as Promise<T>;
@@ -61,7 +98,7 @@ export function initNotesView(token: string, username: string, onLogout: () => v
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${currentToken}`,
       },
       body: JSON.stringify(body),
     });
@@ -72,7 +109,7 @@ export function initNotesView(token: string, username: string, onLogout: () => v
   async function apiDelete(path: string): Promise<void> {
     const r = await fetch(path, {
       method: 'DELETE',
-      headers: { 'Authorization': `Bearer ${token}` },
+      headers: { 'Authorization': `Bearer ${currentToken}` },
     });
     if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
   }

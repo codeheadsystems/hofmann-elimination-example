@@ -319,6 +319,7 @@
       <div class="tabs">
         <button id="tab-login" class="tab active">Log In</button>
         <button id="tab-register" class="tab">Register</button>
+        <button id="tab-recover" class="tab">Recover</button>
       </div>
       <div id="auth-message"></div>
       <form id="auth-form">
@@ -331,6 +332,22 @@
           <input type="password" id="password" autocomplete="current-password" required />
         </div>
         <button type="submit" id="auth-submit" class="btn-primary">Log In</button>
+      </form>
+      <!-- Recovery form (hidden by default) -->
+      <form id="recovery-form" class="hidden">
+        <div class="field">
+          <label for="recovery-username">Username</label>
+          <input type="text" id="recovery-username" placeholder="you@example.com" required />
+        </div>
+        <div id="recovery-code-field" class="field hidden">
+          <label for="recovery-code">Recovery Code</label>
+          <input type="text" id="recovery-code" placeholder="6-digit code from server log" />
+        </div>
+        <div id="recovery-password-field" class="field hidden">
+          <label for="recovery-password">New Password</label>
+          <input type="password" id="recovery-password" />
+        </div>
+        <button type="submit" id="recovery-submit" class="btn-primary">Send Recovery Code</button>
       </form>
     </div>
   </div>
@@ -345,6 +362,14 @@
       </div>
     </header>
     <main>
+      <section class="create-section">
+        <div class="section-label">Change Password</div>
+        <form id="change-password-form">
+          <input type="password" id="new-password" placeholder="New password" required style="margin-bottom: 10px" />
+          <div id="change-password-message" class="message hidden"></div>
+          <button type="submit" class="btn-primary">Change Password</button>
+        </form>
+      </section>
       <section class="create-section">
         <div class="section-label">New Note</div>
         <form id="create-form">
