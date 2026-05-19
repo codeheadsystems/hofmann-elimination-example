@@ -36,7 +36,7 @@ dependencies {
     implementation("org.jdbi:jdbi3-core:3.53.0")
     implementation("com.zaxxer:HikariCP:7.0.2")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.0")
     testImplementation("org.assertj:assertj-core:3.27.7")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
