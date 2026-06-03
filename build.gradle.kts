@@ -24,7 +24,7 @@ application {
 }
 
 dependencies {
-    implementation("com.codeheadsystems:hofmann-dropwizard:1.4.1")
+    implementation("com.codeheadsystems:hofmann-dropwizard:2.0.0")
     implementation("io.dropwizard:dropwizard-core:5.0.2")
     implementation("io.dropwizard:dropwizard-auth:5.0.2")
     implementation("io.dropwizard:dropwizard-assets:5.0.2")
