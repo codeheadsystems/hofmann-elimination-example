@@ -33,7 +33,7 @@ dependencies {
 
     // Database
     implementation("com.h2database:h2:2.4.240")
-    implementation("org.jdbi:jdbi3-core:3.53.0")
+    implementation("org.jdbi:jdbi3-core:3.54.0")
     implementation("com.zaxxer:HikariCP:7.1.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.1")
