@@ -3,7 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     java
     application
-    id("com.gradleup.shadow") version "9.5.0"
+    id("com.gradleup.shadow") version "9.5.1"
 }
 
 group = "com.codeheadsystems.hofmann"
@@ -28,8 +28,8 @@ dependencies {
     implementation("io.dropwizard:dropwizard-core:5.0.2")
     implementation("io.dropwizard:dropwizard-auth:5.0.2")
     implementation("io.dropwizard:dropwizard-assets:5.0.2")
-    implementation("com.google.dagger:dagger:2.60")
-    annotationProcessor("com.google.dagger:dagger-compiler:2.60")
+    implementation("com.google.dagger:dagger:2.60.1")
+    annotationProcessor("com.google.dagger:dagger-compiler:2.60.1")
 
     // Database
     implementation("com.h2database:h2:2.4.240")
