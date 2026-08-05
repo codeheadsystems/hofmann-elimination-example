@@ -3,7 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     java
     application
-    id("com.gradleup.shadow") version "9.6.1"
+    alias(libs.plugins.shadow)
 }
 
 group = "com.codeheadsystems.hofmann"
@@ -24,21 +24,21 @@ application {
 }
 
 dependencies {
-    implementation("com.codeheadsystems:hofmann-dropwizard:2.1.0")
-    implementation("io.dropwizard:dropwizard-core:5.0.2")
-    implementation("io.dropwizard:dropwizard-auth:5.0.2")
-    implementation("io.dropwizard:dropwizard-assets:5.0.2")
-    implementation("com.google.dagger:dagger:2.60.1")
-    annotationProcessor("com.google.dagger:dagger-compiler:2.60.1")
+    implementation(libs.hofmann.dropwizard)
+    implementation(libs.dropwizard.core)
+    implementation(libs.dropwizard.auth)
+    implementation(libs.dropwizard.assets)
+    implementation(libs.dagger)
+    annotationProcessor(libs.dagger.compiler)
 
     // Database
-    implementation("com.h2database:h2:2.4.240")
-    implementation("org.jdbi:jdbi3-core:3.54.0")
-    implementation("com.zaxxer:HikariCP:7.1.0")
+    implementation(libs.h2)
+    implementation(libs.jdbi3.core)
+    implementation(libs.hikaricp)
 
-    testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
-    testImplementation("org.assertj:assertj-core:3.27.7")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.assertj)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.named<Test>("test") {

@@ -5,7 +5,13 @@
 assertj = "3.27.7"
 auth0-jwt = "4.6.0"
 bouncy-castle = "1.85"
+dagger = "2.60.1"
 dropwizard = "5.0.2"
+h2 = "2.4.240"
+hikaricp = "7.1.0"
+hofmann = "2.1.0"
+jdbi = "3.54.0"
+shadow = "9.6.1"
 spring-boot = "4.1.0"
 jackson = '2.22.1'
 jackson-annotations = '2.22'
@@ -19,9 +25,16 @@ slf4j = '2.0.18'
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 auth0-jwt = { module = "com.auth0:java-jwt", version.ref = "auth0-jwt" }
 bouncy-castle = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bouncy-castle" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 dropwizard-core = { module = "io.dropwizard:dropwizard-core", version.ref = "dropwizard" }
 dropwizard-auth = { module = "io.dropwizard:dropwizard-auth", version.ref = "dropwizard" }
+dropwizard-assets = { module = "io.dropwizard:dropwizard-assets", version.ref = "dropwizard" }
 dropwizard-testing = { module = "io.dropwizard:dropwizard-testing", version.ref = "dropwizard" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+hofmann-dropwizard = { module = "com.codeheadsystems:hofmann-dropwizard", version.ref = "hofmann" }
+jdbi3-core = { module = "org.jdbi:jdbi3-core", version.ref = "jdbi" }
 spring-boot-starter-webmvc = { module = "org.springframework.boot:spring-boot-starter-webmvc", version.ref = "spring-boot" }
 spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring-boot" }
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
@@ -35,8 +48,12 @@ tools-jackson-databind = { module = "tools.jackson.core:jackson-databind", versi
 jakarta-rs-api = { module = "jakarta.ws.rs:jakarta.ws.rs-api", version.ref = "jakarta-rs-api" }
 javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 
 [bundles]
 core = ["bouncy-castle", "slf4j-api"]
